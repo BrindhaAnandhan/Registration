@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    <title>Home Page</title>
+{% endblock %}
+
+{% block body_block %}
+    <center>
+        <h3>Name : {{ uo.username }}</h3>
+        <h3>Email : {{ uo.email }}</h3>
+        <h3>Address : {{ po.Address }}</h3>
+        <h3>Picture : </h3> <img src="{{ po.Profile_Pic.url }}" height="300px" width="300px"/>
+
+    </center>
+{% endblock %}
