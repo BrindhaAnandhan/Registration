@@ -34,8 +34,20 @@ def Register(request):
                      "brindhaanand@gmail.com",
                      [mufd.email],
                      fail_silently = True)
+            
+            #registration 
 
-            return HttpResponse('Registration Done')
+            username = ufd.cleaned_data['username']
+            password = ufd.cleaned_data['password']
+            AUO=authenticate(username=username,password=password)
+
+            if AUO and AUO.is_active:
+                login(request,AUO)
+                request.session['username']=username
+                return HttpResponseRedirect(reverse('home'))
+            else:
+                return HttpResponse('Invalid Credentials')
+
         else:
             return HttpResponse('Not Done')
     else:

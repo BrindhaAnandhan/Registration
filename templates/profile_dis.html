@@ -2,15 +2,29 @@
 
 
 {% block title %}
-    <title>Home Page</title>
+    <title>profile</title>
 {% endblock %}
 
 {% block body_block %}
     <center>
-        <h3>Name : {{ uo.username }}</h3>
-        <h3>Email : {{ uo.email }}</h3>
-        <h3>Address : {{ po.Address }}</h3>
-        <h3>Picture : </h3> <img src="{{ po.Profile_Pic.url }}" height="300px" width="300px"/>
 
+
+        <div class="card text-bg-dark mt-5" style="width: 18rem;">
+            <img src="{{ po.Profile_Pic.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title ">{{ uo.username }}</h5>
+              <p class="card-text">Email :{{ uo.email }} </p>
+              <p class="card-text">Address :{{ po.Address }} </p>
+              <a href="#" class="btn btn-primary text-center"> Change Details </a>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="container">
+            <div class="card">
+                <h3>Name : </h3> <h4>{{ uo.username }}</h4>
+                <h3>Email : </h3> <h4>{{ uo.email }}</h4>
+                <h3>Address : </h3> <h4>{{ po.Address }}</h4>
+                <h3>Picture : </h3> <img src="{{ po.Profile_Pic.url }}" height="300px" width="300px"/>
+            </div> -->
     </center>
 {% endblock %}
