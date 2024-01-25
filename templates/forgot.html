@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Home Page</title>
+{% endblock %}
+
+{% block body_block %}
+<center>
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="container text-center mt-5 text-bg-light col-3 pb-3 border border-light rounded ">
+            <div class="col-12 justify-content-center">
+                <div class="form-floating mb-3 pt-3">
+                    <input type="text" class="form-control pt-0" id="floatingInput" name="un"
+                        placeholder="Enter Username: ">
+                    <label for="un"> User Name </label>
+                </div>
+                <div class="form-floating pt-3">
+                    <input type="password" class="form-control pt-0" name="pw" id="floatingPassword" placeholder="Password">
+                    <label for="pw">Password</label>
+                </div>
+                <small style="color: red;"> {{ msg }} </small><br>
+                <input class="btn btn-primary" type="submit" value="Reset">
+            </div>
+        </div>
+
+
+    </form>
+</center>
+{% endblock %}

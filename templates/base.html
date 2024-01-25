@@ -46,7 +46,7 @@
 
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'user_logout' %}" id="right">Log Out</a>
+                            <a class="nav-link active" href="{% url 'cus_logout' %}" id="right">Log Out</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{% url 'profile_dis' %}" id="right">Profile</a>
@@ -55,7 +55,7 @@
                     {% else %}
 
                     <li class="nav-item ms-auto justify-content-end">
-                        <a class="nav-link active justify-content-end" id="right" href="{% url 'user_login' %}">Log In</a>
+                        <a class="nav-link active justify-content-end" id="right" href="{% url 'cus_login' %}">Log In</a>
                     </li>
                     {% endif %}
 

@@ -65,7 +65,7 @@ def home(request):
 
 
 
-def user_login(request):
+def cus_login(request):
     if request.method=='POST':
         username=request.POST['un']
         password=request.POST['pw']
@@ -76,14 +76,16 @@ def user_login(request):
             request.session['username']=username
             return HttpResponseRedirect(reverse('home'))
         else:
-            return HttpResponse('Invalid Credentials')
+            data = {'msg':'*invalid username and password'}
+            return render(request, 'login.html', data)
     return render(request, 'login.html')
 
 
 @login_required
-def user_logout(request):
+def cus_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('home'))
+    # return render(request,'login.html' )
+    return HttpResponseRedirect(reverse('cus_login'))
 
 @login_required
 def profile_dis(request):
@@ -93,3 +95,36 @@ def profile_dis(request):
     data = {'uo':uo, 'po':po}
     return render(request,'profile_dis.html',data )
 
+@login_required
+def change(request):
+    if request.method == 'POST':
+        pw = request.POST['pw']
+        username = request.session.get('username')
+        UO = User.objects.get(username = username)
+        UO.set_password(pw)
+        UO.save()
+        #to display details
+
+        un = request.session.get('username')
+        uo = User.objects.get(username = un)
+        po = Profile.objects.get(username = uo)
+
+        data = {'msg': " Password changes Successfully ",'uo':uo, 'po':po}
+        return render(request,'profile_dis.html',data )
+        # return HttpResponseRedirect(reverse('profile_dis'))
+    return render(request,'change.html') 
+
+def forgot(request):
+    if request.method == 'POST':
+        un = request.POST['un']
+        pw = request.POST['pw']
+        LUO = User.objects.filter(username = un)
+        if LUO:
+            uo = LUO[0]
+            uo.set_password(pw)
+            uo.save()
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            d = {'msg': '*User name not available'}
+            return render(request, 'forgot.html', d)
+    return render(request, 'forgot.html')

@@ -10,12 +10,13 @@
 
 
         <div class="card text-bg-dark mt-5" style="width: 18rem;">
-            <img src="{{ po.Profile_Pic.url }}" class="card-img-top" alt="...">
+            <img src="{{ po.Profile_Pic.url }}" class="card-img-top " alt="...">
             <div class="card-body">
               <h5 class="card-title ">{{ uo.username }}</h5>
               <p class="card-text">Email :{{ uo.email }} </p>
               <p class="card-text">Address :{{ po.Address }} </p>
-              <a href="#" class="btn btn-primary text-center"> Change Details </a>
+              <small style="color: green;">{{ msg }}</small>
+              <a href="{% url 'change'%}" class="btn btn-primary text-center"> Change Password </a>
             </div>
           </div>
         </div>
